@@ -1,0 +1,25 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<title>Genetic Algo</title>
+	<link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+	<div class="content">
+		<h1>GENERIC ALGORITHM</h1>
+		<div class="pic"><img src="img/pic.jpg" height="98" width="628" alt=""></div>
+		<p>Одноточковий кросовер працює наступним чином: спочатку випадково береться одна із length-1 точок розриву. Точка розриву (pivot) - ділянка між сусідніми бітами у строці. Обидві бітьківські структури розриваються на два сегменти по цій точці. Потім відповідні сегменти різних батьків склеюються і виходить два нових генотипу дітей.</p>
+		<p>Панміксія - обидва члени популяції, що створюють батьківську пару випадковим чином вибираються із усієї популяції, причому будь-який член популяції може стати учасником декількох пар.</p>
+		<p>При елітному доборі нова популяція складатиметься лише з найкращих членів репродукційної групи, яка поєднує батьків, нащадків і мутантів. </p>
+		<input type="text" id="popNumber" placeholder="Введіть кількість популяції"><br>
+		<button onclick="startGeneric()">Press to start</button>
+		<div id="maxBlock"></div>
+		<div id="codeBlock"></div>
+	</div>
+
+	<script type="text/javascript" src="js/generic.js"></script>
+	<script type="text/javascript" src="js/main.js"></script>
+</body>
+</html>

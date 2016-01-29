@@ -1,0 +1,26 @@
+﻿/*стили для страницы*/
+.content {
+	text-align: center;
+	padding-top: 25px;
+	width: 75%;
+	margin: 0 auto;
+}
+button {
+	margin-top: 10px;
+	width: 200px;
+	font-size: 20px;
+}
+#codeBlock, #maxBlock {
+	text-align: left;
+	/*margin-top: 25px;*/
+	font-size: 18px;
+}
+.pic {
+	margin-top: 25px;
+}
+p {
+	text-align: left;
+}
+/*h1, button {
+	margin: 0 auto;
+}*/
