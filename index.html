@@ -1,25 +1,102 @@
-﻿<!DOCTYPE html>
-<html>
-<head>
-	<meta charset="utf-8">
-	<meta http-equiv="X-UA-Compatible" content="IE=edge">
-	<title>Genetic Algo</title>
-	<link rel="stylesheet" href="css/style.css">
-</head>
-<body>
-	<div class="content">
-		<h1>GENERIC ALGORITHM</h1>
-		<div class="pic"><img src="img/pic.jpg" height="98" width="628" alt=""></div>
-		<p>Одноточковий кросовер працює наступним чином: спочатку випадково береться одна із length-1 точок розриву. Точка розриву (pivot) - ділянка між сусідніми бітами у строці. Обидві бітьківські структури розриваються на два сегменти по цій точці. Потім відповідні сегменти різних батьків склеюються і виходить два нових генотипу дітей.</p>
-		<p>Панміксія - обидва члени популяції, що створюють батьківську пару випадковим чином вибираються із усієї популяції, причому будь-який член популяції може стати учасником декількох пар.</p>
-		<p>При елітному доборі нова популяція складатиметься лише з найкращих членів репродукційної групи, яка поєднує батьків, нащадків і мутантів. </p>
-		<input type="text" id="popNumber" placeholder="Введіть кількість популяції"><br>
-		<button onclick="startGeneric()">Press to start</button>
-		<div id="maxBlock"></div>
-		<div id="codeBlock"></div>
-	</div>
+<!DOCTYPE html>
+<html ng-app="gen">
+    <head>
+        <meta charset="utf-8">
+        <title>Genetic Alg</title>
+        <link rel="stylesheet" href="css/bootstrap.min.css" media="screen" title="no title" charset="utf-8">
+    </head>
+    <body ng-controller="Main">
 
-	<script type="text/javascript" src="js/generic.js"></script>
-	<script type="text/javascript" src="js/main.js"></script>
-</body>
+        <div class="container">
+            <h1>Genetic</h1>
+
+            <div class="row">
+                <div class="col-md-12">
+                    <table class="table table-hover">
+                        <tr>
+                            <th>#</th>
+                            <th>Min</th>
+                            <th>Max</th>
+                            <th>Fitness</th>
+                        </tr>
+                        <tr ng-repeat="stat in statistic.min track by $index">
+                            <td>
+                                {{$index + 1}}
+                            </td>
+                            <td>
+                                <input type="text" class="form-control" ng-model="statistic.min[$index]">
+                            </td>
+                            <td>
+                                <input type="text" class="form-control" ng-model="statistic.max[$index]">
+                            </td>
+                            <td>
+                                {{statistic.fitness[$index].toString()}}
+                            </td>
+                        </tr>
+                        <tr>
+                            <td></td><td>{{getTotal(statistic.min) | currency}}</td><td>{{getTotal(statistic.max) | currency}}</td>
+                        </tr>
+                    </table>
+                </div>
+            </div>
+
+            <div class="jumbotron">
+                 <div class="input-group">
+                    <input type="text" class="form-control" placeholder="Enter your budget" ng-model="budgetField">
+                    <span class="input-group-addon"></span>
+                    <input type="text" class="form-control" placeholder="Enter your size" ng-model="sizeField">
+                    <span class="input-group-btn">
+                        <button class="btn btn-primary" type="button" ng-click="startGen()">Calculate!</button>
+                    </span>
+                </div>
+            </div>
+
+            <div class="jumbotron" ng-show="maxArray.length">
+                <h2>Max for iterations:</h2>
+                <p ng-repeat="m in maxArray track by $index">{{$index+1}} iteration: {{m}}</p>
+            </div>
+
+            <h2 ng-show="maxArray.length">Best result is</h2>
+            <div class="row" ng-show="maxArray.length">
+                <div class="col-md-12">
+                    <table class="table table-hover">
+                        <tr>
+                            <th>#</th>
+                            <th>Decimal</th>
+                            <th>Binary</th>
+                            <th>Fitness</th>
+                        </tr>
+                        <tr ng-repeat="b in best.decimals track by $index">
+                            <td>
+                                {{$index + 1}}
+                            </td>
+                            <td>
+                                {{best.decimals[$index]}}
+                            </td>
+                            <td>
+                                {{best.binaries[$index]}}
+                            </td>
+                            <td>
+                                {{best.fitness[$index]}}
+                            </td>
+                        </tr>
+                        <tr>
+                            <td></td><td>{{getTotal(best.decimals) | currency}}</td><td></td><th>Effect is {{best.bigFit}}</th>
+                            <!-- <td></td><td>{{getTotal(b.decimals) | currency}}</td><td></td><td>{{getTotal(b.fitness) | currency}}</td> -->
+                        </tr>
+                    </table>
+                </div>
+            </div>
+            <!-- <div class="jumbotron">
+                <h2>The best</h2>
+            </div> -->
+
+        </div>
+
+        <script src="js/angular.min.js" charset="utf-8"></script>
+        <script src="js/individual.js" charset="utf-8"></script>
+        <script src="js/population.js" charset="utf-8"></script>
+        <script src="js/main.js" charset="utf-8"></script>
+
+    </body>
 </html>
